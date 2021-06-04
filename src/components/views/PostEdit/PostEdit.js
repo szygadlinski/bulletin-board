@@ -6,7 +6,7 @@ import clsx from 'clsx';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux';
 
-import styles from 'PostEdit.module.scss';
+import styles from './PostEdit.module.scss';
 
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
