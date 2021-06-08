@@ -6,4 +6,5 @@ export const initialState = {
       error: false,
     },
   },
+  userType: 'logged-in',
 };

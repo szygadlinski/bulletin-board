@@ -1,5 +1,34 @@
 @import '../../../styles/settings.scss';
 
-// .root {
+.root {
+  text-transform: uppercase;
 
-// }
+  .toolbar {
+    position: relative;
+    padding: $base-size * 2;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .logo:hover {
+      background: inherit;
+    }
+
+    .userType {
+      position: absolute;
+      right: 10%;
+      min-width: 200px;
+    }
+
+    .postsButton {
+      min-width: 400px;
+    }
+
+    .button:hover {
+      text-decoration: none;
+      background: $white;
+      color: $main;
+      transition: $transition;
+      border: 1px solid $white;
+    }
+  }
+}
