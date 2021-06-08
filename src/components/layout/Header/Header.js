@@ -11,67 +11,64 @@ import { AppBar, Toolbar, Typography, Button, Link, FormControl, InputLabel, Men
 
 import styles from './Header.module.scss';
 
-const Component = ({ className, userType, changeUser }) => {
+const Component = ({ className, userType, changeUser }) => (
+  <div className={clsx(className, styles.root)}>
+    <AppBar position="static">
+      <Toolbar className={styles.toolbar}>
+        <Button
+          className={styles.logo}
+          component={NavLink}
+          to='/'
+          variant="text"
+          color="inherit"
+        >
+          <Typography variant="h3">
+            Bulletin Board
+          </Typography>
+        </Button>
 
-  return (
-    <div className={clsx(className, styles.root)}>
-      <AppBar position="static">
-        <Toolbar className={styles.toolbar}>
-          <Button
-            className={styles.logo}
+        <FormControl className={styles.userType}>
+          <InputLabel id="user-type-label">User type</InputLabel>
+          <Select
+            labelId="user-type-label"
+            id="user-type"
+            value={userType}
+            onChange={event => changeUser(event.target.value)}
+          >
+            <MenuItem value={'logged-in'}>Logged In</MenuItem>
+            <MenuItem value={'not-logged-in'}>Not Logged In</MenuItem>
+            <MenuItem value={'admin'}>Admin</MenuItem>
+          </Select>
+        </FormControl>
+
+        {userType === 'not-logged-in'
+          ? ''
+          : <Button
+            className={styles.button + ' ' + styles.postsButton}
             component={NavLink}
             to='/'
-            variant="text"
-            color="inherit"
-          >
-            <Typography variant="h3">
-            Bulletin Board
-            </Typography>
-          </Button>
-
-          <FormControl className={styles.userType}>
-            <InputLabel id="user-type-label">User type</InputLabel>
-            <Select
-              labelId="user-type-label"
-              id="user-type"
-              value={userType}
-              onChange={event => changeUser(event.target.value)}
-            >
-              <MenuItem value={'logged-in'}>Logged In</MenuItem>
-              <MenuItem value={'not-logged-in'}>Not Logged In</MenuItem>
-              <MenuItem value={'admin'}>Admin</MenuItem>
-            </Select>
-          </FormControl>
-
-          {userType === 'not-logged-in'
-            ? ''
-            : <Button
-              className={styles.button + ' ' + styles.postsButton}
-              component={NavLink}
-              to='/'
-              variant="outlined"
-              color="inherit"
-              size="large"
-            >
-              My posts
-            </Button>
-          }
-
-          <Button
-            className={styles.button}
-            component={Link}
-            href='https://google.com'
             variant="outlined"
             color="inherit"
             size="large"
           >
-            {userType === 'not-logged-in' ? 'Sign in' : 'Sign out'}
+            My posts
           </Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-};
+        }
+
+        <Button
+          className={styles.button}
+          component={Link}
+          href='https://google.com'
+          variant="outlined"
+          color="inherit"
+          size="large"
+        >
+          {userType === 'not-logged-in' ? 'Sign in' : 'Sign out'}
+        </Button>
+      </Toolbar>
+    </AppBar>
+  </div>
+);
 
 Component.propTypes = {
   children: PropTypes.node,
