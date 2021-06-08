@@ -1,5 +1,11 @@
 @import '../../../styles/settings.scss';
 
-// .root {
+.root {
+  padding: $base-size ($base-size * 3);
 
-// }
+  .header {
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    color: $main;
+  }
+}
