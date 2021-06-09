@@ -6,6 +6,7 @@
   .header {
     text-transform: uppercase;
     letter-spacing: 10px;
-    color: $main;
+    color: $primary;
+    margin-bottom: $base-size * 2;
   }
 }

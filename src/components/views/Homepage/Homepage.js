@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { getAll/*, reduxActionCreator */} from '../../../redux/postsRedux';
 
-import { Post } from '../../features/Post/Post';
+import { PostSummary } from '../../features/PostSummary/PostSummary';
 
 import styles from './Homepage.module.scss';
 
@@ -14,7 +14,7 @@ const Component = ({className, posts}) => (
   <div className={clsx(className, styles.root)}>
     <h1 className={styles.header}>Latest posts</h1>
     {posts.map(post => (
-      <Post key={post.id} {...post} />
+      <PostSummary key={post.id} {...post} />
     ))}
   </div>
 );
