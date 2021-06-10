@@ -10,7 +10,7 @@
     color: $primary;
     text-decoration: none;
     border: 1px solid $primary;
-    border-radius: 10px;
+    border-radius: 5px;
 
     .postImage {
       width: 100px;
@@ -44,6 +44,7 @@
 
     &:hover {
       background: lighten($primary, 50%);
+      transition: $transition;
     }
   }
 }
