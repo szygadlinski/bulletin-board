@@ -33,9 +33,14 @@ const Component = ({ className, posts, userType }) => (
       }
     </div>
 
-    {posts.map(post => (
-      <PostSummary key={post.id} {...post} />
-    ))}
+    {posts
+      .sort((a, b) => (
+        new Date(b.lastUpdate) - new Date(a.lastUpdate)
+      ))
+      .map(post => (
+        <PostSummary key={post.id} {...post} />
+      ))
+    }
   </div>
 );
 
