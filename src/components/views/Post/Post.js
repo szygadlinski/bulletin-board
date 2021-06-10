@@ -15,7 +15,7 @@ const Component = ({className, posts, ...props}) => (
     {posts.map(post => (
       post.id !== props.match.params.id
         ? ''
-        : <PostDetails key={post.id} {...props} />
+        : <PostDetails key={post.id} {...post} />
     ))}
   </div>
 );
