@@ -6,17 +6,20 @@ import clsx from 'clsx';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux';
 
+import { Link } from '@material-ui/core';
+
 import styles from './NotFound.module.scss';
 
-const Component = ({className, children}) => (
+const Component = ({className}) => (
   <div className={clsx(className, styles.root)}>
-    <h2>NotFound</h2>
-    {children}
+    <h1>Oopsy! There&apos;s nothing here... :)</h1>
+    <Link href='/'>
+      <h2>-&gt; back to the main page &lt;-</h2>
+    </Link>
   </div>
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
 };
 
