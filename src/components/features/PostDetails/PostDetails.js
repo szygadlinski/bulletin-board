@@ -32,7 +32,10 @@ const Component = ({ className, userType, id, title, content, date, lastUpdate, 
 
     <div className={styles.post}>
       <div className={styles.postImage}>
-        <img src={image} alt='post-pic' />
+        {image === ''
+          ? <img src='https://cdn4.iconfinder.com/data/icons/documents-letters-and-stationery/400/doc-14-512.png' alt='no-pic' />
+          : <img src={image} alt='post-pic' />
+        }
       </div>
 
       <div className={styles.postText}>
@@ -40,13 +43,13 @@ const Component = ({ className, userType, id, title, content, date, lastUpdate, 
       </div>
 
       <div className={styles.postInfo}>
-        <h1>Price: {price} $</h1>
+        <h2 className={styles.price}>{price ? `Price: ${price} $` : 'Ask for the price'}</h2>
 
         <div className={styles.contactDetails}>
           <h2>Contact the seller:</h2>
           <h3><a href={`mailto:${email}`} >{email}</a></h3>
-          <h3><a href={`tel:${phone}`} >{phone}</a></h3>
-          <h3><a href={`https://www.google.com/maps/place/${city}`} >Location: {city}</a></h3>
+          {phone ? <h3><a href={`tel:${phone}`} >{phone}</a></h3> : ''}
+          {city ? <h3><a href={`https://www.google.com/maps/place/${city}`} >Location: {city}</a></h3> : ''}
         </div>
 
         <div className={styles.postData}>
@@ -70,7 +73,7 @@ Component.propTypes = {
   email: PropTypes.string,
   status: PropTypes.string,
   image: PropTypes.string,
-  price: PropTypes.number,
+  price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   phone: PropTypes.string,
   city: PropTypes.string,
 };

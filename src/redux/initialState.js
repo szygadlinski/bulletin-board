@@ -36,9 +36,9 @@ export const initialState = {
         email: 'johnny@walker.com',
         status: 'draft',
         image: '',
-        price: 5,
+        price: '',
         phone: '',
-        city: 'Berlin',
+        city: '',
       },
     ],
     loading: {
