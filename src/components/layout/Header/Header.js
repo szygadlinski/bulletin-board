@@ -56,7 +56,7 @@ const Component = ({ className, userType, changeUser }) => (
         }
 
         <Button
-          className={styles.button}
+          className={styles.button + ' ' + styles.loginButton}
           component={Link}
           href='https://google.com'
           variant="outlined"

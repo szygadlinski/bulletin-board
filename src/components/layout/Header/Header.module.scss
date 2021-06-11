@@ -19,16 +19,23 @@
       min-width: 200px;
     }
 
+    .button {
+      text-decoration: none;
+      border: 1px solid $white;
+
+      &:hover {
+        background: $white;
+        color: $primary;
+        transition: $transition;
+      }
+    }
+
     .postsButton {
       min-width: 400px;
     }
 
-    .button:hover {
-      text-decoration: none;
-      background: $white;
-      color: $primary;
-      transition: $transition;
-      border: 1px solid $white;
+    .loginButton {
+      min-width: 150px;
     }
   }
 }
