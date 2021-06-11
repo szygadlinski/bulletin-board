@@ -30,7 +30,7 @@ const Component = ({ className, userType, id, title, content, date, lastUpdate, 
       }
     </div>
 
-    <div className={styles.postData}>
+    <div className={styles.post}>
       <div className={styles.postImage}>
         <img src={image} alt='post-pic' />
       </div>
@@ -44,14 +44,16 @@ const Component = ({ className, userType, id, title, content, date, lastUpdate, 
 
         <div className={styles.contactDetails}>
           <h2>Contact the seller:</h2>
-          <h3>{email}</h3>
-          <h3>{phone}</h3>
-          <h3>{city}</h3>
+          <h3><a href={`mailto:${email}`} >{email}</a></h3>
+          <h3><a href={`tel:${phone}`} >{phone}</a></h3>
+          <h3><a href={`https://www.google.com/maps/place/${city}`} >Location: {city}</a></h3>
         </div>
 
-        <p>Status: {status}</p>
-        <p>Added: {date}</p>
-        <p>Last updated: {lastUpdate}</p>
+        <div className={styles.postData}>
+          <p>Status: {status}</p>
+          <p>Added: {date}</p>
+          <p>Last updated: {lastUpdate}</p>
+        </div>
       </div>
     </div>
   </div>

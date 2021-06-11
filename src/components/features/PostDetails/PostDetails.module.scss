@@ -27,4 +27,83 @@
       }
     }
   }
+
+  .post {
+    display: flex;
+    flex-wrap: wrap;
+    padding: ($base-size * 2) 0;
+
+    .postImage {
+      flex: 1;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+
+    .postText {
+      flex: 2;
+      text-align: justify;
+      letter-spacing: 1px;
+      line-height: 1.7;
+      margin: 0 ($base-size * 3);
+      color: $primary;
+    }
+
+    .postInfo {
+      flex: 1;
+      text-align: right;
+      color: $primary;
+
+      h1 {
+        margin: 0;
+        padding: ($base-size / 4) ($base-size / 2);
+        text-transform: uppercase;
+        color: $white;
+        background: $primary;
+        border-radius: 5px;
+      }
+
+      .contactDetails {
+        margin: ($base-size * 2) 0;
+        padding: ($base-size / 4) ($base-size / 2);
+        background: lighten($primary, 50%);
+        border-radius: 5px;
+        line-height: 1.7;
+
+        h2 {
+          margin: 0;
+          text-decoration: underline;
+        }
+
+        h3 {
+          margin: 0;
+
+          a {
+            text-decoration: none;
+            color: $primary;
+
+            &:hover {
+              color: $white;
+              transition: $transition;
+            }
+          }
+        }
+      }
+
+      .postData {
+        padding: ($base-size / 4) ($base-size / 2);
+        background: lighten($primary, 50%);
+        border-radius: 5px;
+        line-height: 1.7;
+        font-size: $base-size;
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
 }
