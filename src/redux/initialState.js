@@ -46,5 +46,8 @@ export const initialState = {
       error: false,
     },
   },
-  userType: 'logged-in',
+  user: {
+    status: 'logged-in',
+    email: '',
+  },
 };

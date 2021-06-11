@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getUserType/*, reduxActionCreator */} from '../../../redux/userRedux';
+import { getUserStatus/*, reduxActionCreator */} from '../../../redux/userRedux';
 
 import { Button, Link } from '@material-ui/core';
 
 import styles from './PostDetails.module.scss';
 
-const Component = ({ className, userType, id, title, content, date, lastUpdate, email, status, image, price, phone, city }) => (
+const Component = ({ className, userStatus, id, title, content, date, lastUpdate, email, status, image, price, phone, city }) => (
   <div className={clsx(className, styles.root)}>
     <div className={styles.header}>
       <h1>{title}</h1>
 
-      {userType === 'not-logged-in'
+      {userStatus === 'not-logged-in'
         ? ''
         : <Button
           className={styles.button}
@@ -64,7 +64,7 @@ const Component = ({ className, userType, id, title, content, date, lastUpdate, 
 
 Component.propTypes = {
   className: PropTypes.string,
-  userType: PropTypes.string,
+  userStatus: PropTypes.string,
   id: PropTypes.string,
   title: PropTypes.string,
   content: PropTypes.string,
@@ -79,7 +79,7 @@ Component.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  userType: getUserType(state),
+  userStatus: getUserStatus(state),
 });
 
 // const mapDispatchToProps = dispatch => ({

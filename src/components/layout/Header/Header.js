@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getUserType, changeUser } from '../../../redux/userRedux';
+import { getUserStatus, changeUser } from '../../../redux/userRedux';
 
 import { AppBar, Toolbar, Typography, Button, Link, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 import styles from './Header.module.scss';
 
-const Component = ({ className, userType, changeUser }) => (
+const Component = ({ className, userStatus, changeUser }) => (
   <div className={clsx(className, styles.root)}>
     <AppBar position="static">
       <Toolbar className={styles.toolbar}>
@@ -27,12 +27,12 @@ const Component = ({ className, userType, changeUser }) => (
           </Typography>
         </Button>
 
-        <FormControl className={styles.userType}>
+        <FormControl className={styles.userStatus}>
           <InputLabel id="user-type-label">User type</InputLabel>
           <Select
             labelId="user-type-label"
             id="user-type"
-            value={userType}
+            value={userStatus}
             onChange={event => changeUser(event.target.value)}
           >
             <MenuItem value={'logged-in'}>Logged In</MenuItem>
@@ -41,7 +41,7 @@ const Component = ({ className, userType, changeUser }) => (
           </Select>
         </FormControl>
 
-        {userType === 'not-logged-in'
+        {userStatus === 'not-logged-in'
           ? ''
           : <Button
             className={styles.button + ' ' + styles.postsButton}
@@ -63,7 +63,7 @@ const Component = ({ className, userType, changeUser }) => (
           color="inherit"
           size="large"
         >
-          {userType === 'not-logged-in' ? 'Sign in' : 'Sign out'}
+          {userStatus === 'not-logged-in' ? 'Sign in' : 'Sign out'}
         </Button>
       </Toolbar>
     </AppBar>
@@ -73,12 +73,12 @@ const Component = ({ className, userType, changeUser }) => (
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  userType: PropTypes.string,
+  userStatus: PropTypes.string,
   changeUser: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  userType: getUserType(state),
+  userStatus: getUserStatus(state),
 });
 
 const mapDispatchToProps = dispatch => ({

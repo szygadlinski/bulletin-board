@@ -1,5 +1,5 @@
 // selectors
-export const getUserType = ({ userType }) => userType;
+export const getUserStatus = ({ user }) => user.status;
 
 // action name creator
 const reducerName = 'user';
@@ -15,7 +15,10 @@ export const changeUser = payload => ({ payload, type: CHANGE_USER });
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {
     case CHANGE_USER: {
-      return action.payload;
+      return {
+        ...statePart,
+        status: action.payload,
+      };
     }
     default:
       return statePart;
