@@ -1,5 +1,12 @@
 @import '../../../styles/settings.scss';
 
-// .root {
+.root {
+  padding: $base-size ($base-size * 3);
 
-// }
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    color: $primary;
+    margin: ($base-size * 2) 0;
+  }
+}
