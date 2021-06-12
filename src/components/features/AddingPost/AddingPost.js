@@ -13,13 +13,11 @@ import styles from './AddingPost.module.scss';
 const Component = ({className}) => {
 
   const [status, setStatus] = useState('');
-
   const handleStatus = event => {
     setStatus(event.target.value);
   };
 
   const [image, setImage] = useState(null);
-
   const handleImage = ({ target }) => {
     setImage(target.files[0]);
   };

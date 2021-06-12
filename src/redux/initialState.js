@@ -48,6 +48,6 @@ export const initialState = {
   },
   user: {
     status: 'logged-in',
-    email: '',
+    email: 'jack@daniels.com',
   },
 };
