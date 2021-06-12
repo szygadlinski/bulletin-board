@@ -25,7 +25,7 @@ const Component = ({className}) => {
       <form className={styles.form} action='/' method='POST'>
         <TextField
           id='post-title'
-          className={styles.postTitle}
+          className={styles.formInput}
           label='Title'
           variant='outlined'
           required
@@ -37,11 +37,11 @@ const Component = ({className}) => {
 
         <TextField
           id='post-description'
-          className={styles.postDescription}
+          className={styles.formInput}
           label='Description'
           variant='outlined'
           multiline
-          rows='8'
+          rows='10'
           required
           inputProps={{
             minLength: 20,
@@ -51,7 +51,7 @@ const Component = ({className}) => {
 
         <TextField
           id='post-email'
-          className={styles.postEmail}
+          className={styles.formInput}
           label='E-mail'
           variant='outlined'
           type='email'
@@ -62,7 +62,7 @@ const Component = ({className}) => {
           }}
         />
 
-        <FormControl variant='outlined' className={styles.postStatus} required>
+        <FormControl variant='outlined' className={styles.formInput} required>
           <InputLabel id='post-status-label'>Status</InputLabel>
           <Select
             labelId='post-status-label'
@@ -78,7 +78,7 @@ const Component = ({className}) => {
         </FormControl>
 
         <label htmlFor='post-image'>
-          <Button className={styles.postImage} variant='outlined' component='span'>
+          <Button className={styles.formInput + ' ' + styles.formButton} variant='outlined' component='span'>
             Upload image
           </Button>
         </label>
@@ -89,12 +89,12 @@ const Component = ({className}) => {
           hidden
         />
 
-        <FormControl className={styles.postPrice} variant='outlined'>
+        <FormControl className={styles.formInput} variant='outlined'>
           <InputLabel htmlFor='post-price'>Price</InputLabel>
           <OutlinedInput
             id='post-price'
             type='number'
-            startAdornment={<InputAdornment>$</InputAdornment>}
+            startAdornment={<InputAdornment position='start'>$</InputAdornment>}
             labelWidth={40}
             inputProps={{
               min: 1,
@@ -105,7 +105,8 @@ const Component = ({className}) => {
 
         <TextField
           id='post-phone'
-          className={styles.postPhone}
+          type='tel'
+          className={styles.formInput}
           label='Phone'
           variant='outlined'
           inputProps={{
@@ -116,7 +117,7 @@ const Component = ({className}) => {
 
         <TextField
           id='post-location'
-          className={styles.postLocation}
+          className={styles.formInput}
           label='Location'
           variant='outlined'
           inputProps={{
@@ -126,7 +127,7 @@ const Component = ({className}) => {
         />
 
         <Button
-          className={styles.postSubmit}
+          className={styles.formInput + ' ' + styles.formSubmit}
           type='submit'
           variant='outlined'
           size='large'
