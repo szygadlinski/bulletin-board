@@ -18,6 +18,12 @@ const Component = ({className}) => {
     setStatus(event.target.value);
   };
 
+  const [image, setImage] = useState(null);
+
+  const handleImage = ({ target }) => {
+    setImage(target.files[0]);
+  };
+
   return (
     <div className={clsx(className, styles.root)}>
       <h1>Adding new post</h1>
@@ -79,15 +85,16 @@ const Component = ({className}) => {
 
         <label htmlFor='post-image'>
           <Button className={styles.formInput + ' ' + styles.formButton} variant='outlined' component='span'>
-            Upload image
+            <input
+              accept='image/*'
+              id='post-image'
+              type='file'
+              onChange={handleImage}
+              hidden
+            />
+            {image ? `Uploaded: ${image.name}` : 'Upload image'}
           </Button>
         </label>
-        <input
-          accept='image/*'
-          id='post-image'
-          type='file'
-          hidden
-        />
 
         <FormControl className={styles.formInput} variant='outlined'>
           <InputLabel htmlFor='post-price'>Price</InputLabel>
