@@ -1,5 +1,41 @@
 @import '../../../styles/settings.scss';
 
-// .root {
+.root {
+  padding: $base-size ($base-size * 3);
 
-// }
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    color: $primary;
+    margin: ($base-size * 2) 0;
+  }
+
+  .form {
+    margin: ($base-size * 2) auto;
+    padding: $base-size ($base-size * 3);
+    background: lighten($primary, 50%);
+    border: 1px solid $primary;
+    border-radius: 5px;
+    max-width: 70%;
+
+    .formInput {
+      width: 100%;
+      margin: $base-size 0;
+    }
+
+    .formButton {
+      height: 55px;
+    }
+
+    .formSubmit {
+      height: 110px;
+    }
+
+    .formButton:hover, .formSubmit:hover {
+      background: $primary;
+      color: $white;
+      transition: $transition;
+    }
+  }
+}
