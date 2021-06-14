@@ -10,16 +10,46 @@ import { TextField, FormControl, InputLabel, Select, MenuItem, Button, OutlinedI
 
 import styles from './EditingPost.module.scss';
 
-const Component = ({className, title, content, email, price, phone, city}) => {
+const Component = ({className, title, content, email, status, image, price, phone, city}) => {
 
-  const [status, setStatus] = useState('');
-  const handleStatus = event => {
-    setStatus(event.target.value);
+  const [newTitle, setNewTitle] = useState(title);
+  const handleNewTitle = event => {
+    setNewTitle(event.target.value);
   };
 
-  const [image, setImage] = useState(null);
-  const handleImage = ({ target }) => {
-    setImage(target.files[0]);
+  const [newContent, setNewContent] = useState(content);
+  const handleNewContent = event => {
+    setNewContent(event.target.value);
+  };
+
+  const [newEmail, setNewEmail] = useState(email);
+  const handleNewEmail = event => {
+    setNewEmail(event.target.value);
+  };
+
+  const [newStatus, setNewStatus] = useState(status);
+  const handleNewStatus = event => {
+    setNewStatus(event.target.value);
+  };
+
+  const [newImage, setNewImage] = useState(null);
+  const handleNewImage = ({ target }) => {
+    setNewImage(target.files[0]);
+  };
+
+  const [newPrice, setNewPrice] = useState(price);
+  const handleNewPrice = event => {
+    setNewPrice(event.target.value);
+  };
+
+  const [newPhone, setNewPhone] = useState(phone);
+  const handleNewPhone = event => {
+    setNewPhone(event.target.value);
+  };
+
+  const [newCity, setNewCity] = useState(city);
+  const handleNewCity = event => {
+    setNewCity(event.target.value);
   };
 
   return (
@@ -31,7 +61,8 @@ const Component = ({className, title, content, email, price, phone, city}) => {
           id='post-title'
           className={styles.formInput}
           label='Title'
-          value={title}
+          value={newTitle}
+          onChange={handleNewTitle}
           variant='outlined'
           required
           inputProps={{
@@ -44,7 +75,8 @@ const Component = ({className, title, content, email, price, phone, city}) => {
           id='post-description'
           className={styles.formInput}
           label='Description'
-          value={content}
+          value={newContent}
+          onChange={handleNewContent}
           variant='outlined'
           multiline
           rows='10'
@@ -59,7 +91,8 @@ const Component = ({className, title, content, email, price, phone, city}) => {
           id='post-email'
           className={styles.formInput}
           label='E-mail'
-          value={email}
+          value={newEmail}
+          onChange={handleNewEmail}
           variant='outlined'
           type='email'
           required
@@ -74,8 +107,8 @@ const Component = ({className, title, content, email, price, phone, city}) => {
           <Select
             labelId='post-status-label'
             id='post-status'
-            value={status}
-            onChange={handleStatus}
+            value={newStatus}
+            onChange={handleNewStatus}
             label='Status'
           >
             <MenuItem value={'draft'}>Draft</MenuItem>
@@ -90,10 +123,10 @@ const Component = ({className, title, content, email, price, phone, city}) => {
               accept='image/*'
               id='post-image'
               type='file'
-              onChange={handleImage}
+              onChange={handleNewImage}
               hidden
             />
-            {image ? `Uploaded: ${image.name}` : 'Upload image'}
+            {newImage ? `Uploaded: ${newImage.name}` : 'Upload image'}
           </Button>
         </label>
 
@@ -102,7 +135,8 @@ const Component = ({className, title, content, email, price, phone, city}) => {
           <OutlinedInput
             id='post-price'
             type='number'
-            value={price}
+            value={newPrice}
+            onChange={handleNewPrice}
             startAdornment={<InputAdornment position='start'>$</InputAdornment>}
             labelWidth={40}
             inputProps={{
@@ -117,7 +151,8 @@ const Component = ({className, title, content, email, price, phone, city}) => {
           type='tel'
           className={styles.formInput}
           label='Phone'
-          value={phone}
+          value={newPhone}
+          onChange={handleNewPhone}
           variant='outlined'
           inputProps={{
             minLength: 9,
@@ -129,7 +164,8 @@ const Component = ({className, title, content, email, price, phone, city}) => {
           id='post-location'
           className={styles.formInput}
           label='Location'
-          value={city}
+          value={newCity}
+          onChange={handleNewCity}
           variant='outlined'
           inputProps={{
             minLength: 3,
@@ -157,7 +193,7 @@ Component.propTypes = {
   email: PropTypes.string,
   status: PropTypes.string,
   image: PropTypes.string,
-  price: PropTypes.number,
+  price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   phone: PropTypes.string,
   city: PropTypes.string,
 };
