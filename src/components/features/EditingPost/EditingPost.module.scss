@@ -38,4 +38,10 @@
       transition: $transition;
     }
   }
+
+  @media (max-width: 767px) {
+    .form {
+      max-width: 100%;
+    }
+  }
 }

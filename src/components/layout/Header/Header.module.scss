@@ -20,6 +20,7 @@
     }
 
     .button {
+      margin: $base-size;
       text-decoration: none;
       border: 1px solid $white;
 
@@ -38,4 +39,11 @@
       min-width: 150px;
     }
   }
+
+  @media (max-width: 991px) {
+    .toolbar {
+      flex-direction: column;
+    }
+  }
+
 }
