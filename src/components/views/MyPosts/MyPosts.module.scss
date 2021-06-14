@@ -1,5 +1,30 @@
 @import '../../../styles/settings.scss';
 
-// .root {
+.root {
+  padding: $base-size ($base-size * 3);
 
-// }
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    color: $primary;
+    margin: ($base-size * 2) 0;
+
+    h1 {
+      margin: 0;
+    }
+
+    .button {
+      color: inherit;
+      text-decoration: none;
+      min-width: 300px;
+
+      &:hover {
+        background: lighten($primary, 50%);
+        transition: $transition;
+      }
+    }
+  }
+}
