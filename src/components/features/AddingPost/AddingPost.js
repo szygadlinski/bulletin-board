@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import {/* reduxSelector, */addPost } from '../../../redux/postsRedux';
+import { addPost } from '../../../redux/postsRedux';
 
 import { TextField, FormControl, InputLabel, Select, MenuItem, Button, OutlinedInput, InputAdornment } from '@material-ui/core';
 
