@@ -3,35 +3,68 @@ import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux';
+import { connect } from 'react-redux';
+import {/* reduxSelector, */addPost } from '../../../redux/postsRedux';
 
 import { TextField, FormControl, InputLabel, Select, MenuItem, Button, OutlinedInput, InputAdornment } from '@material-ui/core';
 
 import styles from './AddingPost.module.scss';
 
-const Component = ({className}) => {
+const Component = ({ className, addPost }) => {
 
-  const [status, setStatus] = useState('');
-  const handleStatus = event => {
-    setStatus(event.target.value);
+  const [newPost, setNewPost] = useState({ image: '' });
+
+  const handleNewPost = event => {
+    if(event.target.name === 'image') {
+      const image = event.target.files[0];
+      setNewPost({ ...newPost, image: event.target.value, imageName: image.name });
+    } else {
+      setNewPost({ ...newPost, [event.target.name]: event.target.value });
+    }
   };
 
-  const [image, setImage] = useState(null);
-  const handleImage = ({ target }) => {
-    setImage(target.files[0]);
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    if(newPost.title && newPost.content && newPost.status) {
+      if(newPost.title.length > 10) {
+        if(newPost.content.length > 20) {
+          addPost(newPost);
+          setNewPost({
+            title: '',
+            content: '',
+            status: '',
+            image: '',
+            price: '',
+            phone: '',
+            city: '',
+            imageName: '',
+          });
+          alert('Post successfully added!');
+        } else {
+          alert('Your description is too short!');
+        }
+      } else {
+        alert('Your title is too short!');
+      }
+    } else {
+      alert('Please fill all of the necessary fields!');
+    }
   };
 
   return (
     <div className={clsx(className, styles.root)}>
       <h1>Adding new post</h1>
 
-      <form className={styles.form} action='/' method='POST'>
+      <form className={styles.form}>
         <TextField
           id='post-title'
+          name='title'
           className={styles.formInput}
           label='Title'
           variant='outlined'
+          value={newPost.title}
+          onChange={handleNewPost}
           required
           inputProps={{
             minLength: 10,
@@ -41,9 +74,12 @@ const Component = ({className}) => {
 
         <TextField
           id='post-description'
+          name='content'
           className={styles.formInput}
           label='Description'
           variant='outlined'
+          value={newPost.content}
+          onChange={handleNewPost}
           multiline
           rows='10'
           required
@@ -53,26 +89,14 @@ const Component = ({className}) => {
           }}
         />
 
-        <TextField
-          id='post-email'
-          className={styles.formInput}
-          label='E-mail'
-          variant='outlined'
-          type='email'
-          required
-          inputProps={{
-            minLength: 6,
-            maxLength: 100,
-          }}
-        />
-
         <FormControl variant='outlined' className={styles.formInput} required>
           <InputLabel id='post-status-label'>Status</InputLabel>
           <Select
             labelId='post-status-label'
             id='post-status'
-            value={status}
-            onChange={handleStatus}
+            name='status'
+            value={newPost.status}
+            onChange={handleNewPost}
             label='Status'
           >
             <MenuItem value={'draft'}>Draft</MenuItem>
@@ -86,11 +110,13 @@ const Component = ({className}) => {
             <input
               accept='image/*'
               id='post-image'
+              name='image'
               type='file'
-              onChange={handleImage}
+              value={newPost.image}
+              onChange={handleNewPost}
               hidden
             />
-            {image ? `Uploaded: ${image.name}` : 'Upload image'}
+            {newPost.image.length > 0 ? `Uploaded: ${newPost.imageName}` : 'Upload image'}
           </Button>
         </label>
 
@@ -99,8 +125,11 @@ const Component = ({className}) => {
           <OutlinedInput
             id='post-price'
             type='number'
+            name='price'
             startAdornment={<InputAdornment position='start'>$</InputAdornment>}
             labelWidth={40}
+            value={newPost.price}
+            onChange={handleNewPost}
             inputProps={{
               min: 1,
               max: 999999,
@@ -111,8 +140,11 @@ const Component = ({className}) => {
         <TextField
           id='post-phone'
           type='tel'
+          name='phone'
           className={styles.formInput}
           label='Phone'
+          value={newPost.phone}
+          onChange={handleNewPost}
           variant='outlined'
           inputProps={{
             minLength: 9,
@@ -122,8 +154,11 @@ const Component = ({className}) => {
 
         <TextField
           id='post-location'
+          name='city'
           className={styles.formInput}
           label='Location'
+          value={newPost.city}
+          onChange={handleNewPost}
           variant='outlined'
           inputProps={{
             minLength: 3,
@@ -136,6 +171,7 @@ const Component = ({className}) => {
           type='submit'
           variant='outlined'
           size='large'
+          onClick={handleSubmit}
         >
           Publish!
         </Button>
@@ -146,20 +182,21 @@ const Component = ({className}) => {
 
 Component.propTypes = {
   className: PropTypes.string,
+  addPost: PropTypes.func,
 };
 
 // const mapStateToProps = state => ({
 //   someProp: reduxSelector(state),
 // });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  addPost: newPost => dispatch(addPost(newPost)),
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(null, mapDispatchToProps)(Component);
 
 export {
-  Component as AddingPost,
-  // Container as AddingPost,
+  // Component as AddingPost,
+  Container as AddingPost,
   Component as AddingPostComponent,
 };
