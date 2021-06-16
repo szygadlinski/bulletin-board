@@ -14,7 +14,16 @@ import styles from './AddingPost.module.scss';
 
 const Component = ({ className, userEmail, addPost }) => {
 
-  const [newPost, setNewPost] = useState({ image: '' });
+  const [newPost, setNewPost] = useState({
+    title: '',
+    content: '',
+    status: 'draft',
+    image: '',
+    price: '',
+    phone: '',
+    city: '',
+    imageName: '',
+  });
 
   const handleNewPost = event => {
     if(event.target.name === 'image') {
@@ -51,7 +60,7 @@ const Component = ({ className, userEmail, addPost }) => {
           setNewPost({
             title: '',
             content: '',
-            status: '',
+            status: 'draft',
             image: '',
             price: '',
             phone: '',
