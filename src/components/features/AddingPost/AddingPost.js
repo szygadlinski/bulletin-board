@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -51,6 +52,8 @@ const Component = ({ className, userEmail, addPost }) => {
     return `${day}.${month}.${year} ${hour}:${minute}`;
   };
 
+  const history = useHistory();
+
   const handleSubmit = event => {
     event.preventDefault();
 
@@ -75,6 +78,7 @@ const Component = ({ className, userEmail, addPost }) => {
             imageName: '',
           });
           alert('Post successfully added!');
+          history.push('/');
         } else {
           alert('Your description is too short!');
         }

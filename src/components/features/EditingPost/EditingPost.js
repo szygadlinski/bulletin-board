@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { editPost } from '../../../redux/postsRedux';
-import { getUserEmail } from '../../../redux/userRedux';
 
 import { TextField, FormControl, InputLabel, Select, MenuItem, Button, OutlinedInput, InputAdornment } from '@material-ui/core';
 
 import styles from './EditingPost.module.scss';
 
-const Component = ({ className, userEmail, editPost, title, content, status, image, price, phone, city, imageName }) => {
+const Component = ({ className, editPost, id, title, content, date, lastUpdate, email, status, image, price, phone, city, imageName }) => {
 
   const [updatedPost, setUpdatedPost] = useState({
+    id: id,
     title: title,
     content: content,
+    date: date,
+    lastUpdate: lastUpdate,
+    email: email,
     status: status,
     image: '',
     price: price,
@@ -50,15 +54,29 @@ const Component = ({ className, userEmail, editPost, title, content, status, ima
     return `${day}.${month}.${year} ${hour}:${minute}`;
   };
 
+  const history = useHistory();
+
   const handleSubmit = event => {
     event.preventDefault();
 
-    editPost({
-      ...updatedPost,
-      lastUpdate: currentDate(),
-    });
-    alert('Post successfully updated!');
-
+    if(updatedPost.title && updatedPost.content && updatedPost.status) {
+      if(updatedPost.title.length > 10) {
+        if(updatedPost.content.length > 20) {
+          editPost({
+            ...updatedPost,
+            lastUpdate: currentDate(),
+          });
+          alert('Post successfully updated!');
+          history.push('/');
+        } else {
+          alert('Your description is too short!');
+        }
+      } else {
+        alert('Your title is too short!');
+      }
+    } else {
+      alert('Please fill all of the necessary fields!');
+    }
   };
 
   return (
@@ -191,10 +209,13 @@ const Component = ({ className, userEmail, editPost, title, content, status, ima
 
 Component.propTypes = {
   className: PropTypes.string,
-  userEmail: PropTypes.string,
   editPost: PropTypes.func,
+  id: PropTypes.string,
   title: PropTypes.string,
   content: PropTypes.string,
+  date: PropTypes.string,
+  lastUpdate: PropTypes.string,
+  email: PropTypes.string,
   status: PropTypes.string,
   image: PropTypes.string,
   price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -203,15 +224,11 @@ Component.propTypes = {
   imageName: PropTypes.string,
 };
 
-const mapStateToProps = state => ({
-  userEmail: getUserEmail(state),
-});
-
 const mapDispatchToProps = dispatch => ({
   editPost: updatedPost => dispatch(editPost(updatedPost)),
 });
 
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(null, mapDispatchToProps)(Component);
 
 export {
   // Component as EditingPost,
