@@ -31,6 +31,12 @@ const Component = ({ className, editPost, id, title, content, date, lastUpdate, 
   const handleUpdatedPost = event => {
     if(event.target.name === 'image') {
       const image = event.target.files[0];
+      const fr = new FileReader();
+      fr.readAsDataURL(image);
+      fr.onload = function() {
+        const imagePreview = document.getElementById('image-preview');
+        imagePreview.src = this.result;
+      };
       setUpdatedPost({
         ...updatedPost,
         image: event.target.value,
@@ -145,6 +151,7 @@ const Component = ({ className, editPost, id, title, content, date, lastUpdate, 
             />
             {updatedPost.image.length > 0 ? `Uploaded: ${updatedPost.imageName}` : 'Upload image'}
           </Button>
+          <img id='image-preview' className={styles.imagePreview} src='' alt='' />
         </label>
 
         <FormControl className={styles.formInput} variant='outlined'>

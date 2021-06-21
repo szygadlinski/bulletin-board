@@ -29,6 +29,12 @@ const Component = ({ className, userEmail, addPost }) => {
   const handleNewPost = event => {
     if(event.target.name === 'image') {
       const image = event.target.files[0];
+      const fr = new FileReader();
+      fr.readAsDataURL(image);
+      fr.onload = function() {
+        const imagePreview = document.getElementById('image-preview');
+        imagePreview.src = this.result;
+      };
       setNewPost({
         ...newPost,
         image: event.target.value,
@@ -156,6 +162,7 @@ const Component = ({ className, userEmail, addPost }) => {
             />
             {newPost.image.length > 0 ? `Uploaded: ${newPost.imageName}` : 'Upload image'}
           </Button>
+          <img id='image-preview' className={styles.imagePreview} src='' alt='' />
         </label>
 
         <FormControl className={styles.formInput} variant='outlined'>
