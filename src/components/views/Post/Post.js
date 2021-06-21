@@ -6,19 +6,24 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { getAll/*, reduxActionCreator */} from '../../../redux/postsRedux';
 
+import { NotFound } from '../NotFound/NotFound';
 import { PostDetails } from '../../features/PostDetails/PostDetails';
 
 import styles from './Post.module.scss';
 
-const Component = ({className, posts, ...props}) => (
-  <div className={clsx(className, styles.root)}>
-    {posts.map(post => (
-      post.id !== props.match.params.id
-        ? ''
-        : <PostDetails key={post.id} {...post} />
-    ))}
-  </div>
-);
+const Component = ({className, posts, ...props}) => {
+
+  const properPost = posts.filter(post => post.id === props.match.params.id);
+
+  return (
+    <div className={clsx(className, styles.root)}>
+      {properPost.length > 0
+        ? <PostDetails key={properPost[0].id} {...properPost[0]} />
+        : <NotFound />
+      }
+    </div>
+  );
+};
 
 Component.propTypes = {
   className: PropTypes.string,

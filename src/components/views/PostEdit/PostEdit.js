@@ -12,17 +12,21 @@ import { NotFound } from '../NotFound/NotFound';
 
 import styles from './PostEdit.module.scss';
 
-const Component = ({ className, userStatus, userEmail, posts, ...props }) => (
-  <div className={clsx(className, styles.root)}>
-    {posts.map(post => (
-      post.id !== props.match.params.id
-        ? ''
-        : userStatus === 'not-logged-in' || (userStatus === 'logged-in' && userEmail !== post.email)
-          ? <NotFound key={post.id} />
-          : <EditingPost key={post.id} {...post} />
-    ))}
-  </div>
-);
+const Component = ({ className, userStatus, userEmail, posts, ...props }) => {
+
+  const properPost = posts.filter(post => post.id === props.match.params.id);
+
+  return (
+    <div className={clsx(className, styles.root)}>
+      {properPost.length > 0
+        ? userStatus === 'not-logged-in' || (userStatus === 'logged-in' && userEmail !== properPost[0].email)
+          ? <NotFound />
+          : <EditingPost key={properPost[0].id} {...properPost[0]} />
+        : <NotFound />
+      }
+    </div>
+  );
+};
 
 Component.propTypes = {
   className: PropTypes.string,

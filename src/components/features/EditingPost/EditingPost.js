@@ -83,7 +83,7 @@ const Component = ({ className, editPost, id, title, content, date, lastUpdate, 
     <div className={clsx(className, styles.root)}>
       <h1>Editing post</h1>
 
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <TextField
           id='post-title'
           name='title'
@@ -198,7 +198,6 @@ const Component = ({ className, editPost, id, title, content, date, lastUpdate, 
           type='submit'
           variant='outlined'
           size='large'
-          onClick={handleSubmit}
         >
           Update!
         </Button>
