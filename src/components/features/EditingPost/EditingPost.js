@@ -39,7 +39,7 @@ const Component = ({ className, editPost, id, title, content, date, lastUpdate, 
       };
       setUpdatedPost({
         ...updatedPost,
-        image: event.target.value,
+        image: image,
         imageName: image.name,
       });
     } else {
@@ -145,11 +145,10 @@ const Component = ({ className, editPost, id, title, content, date, lastUpdate, 
               id='post-image'
               name='image'
               type='file'
-              value={updatedPost.image}
               onChange={handleUpdatedPost}
               hidden
             />
-            {updatedPost.image.length > 0 ? `Uploaded: ${updatedPost.imageName}` : 'Upload image'}
+            {updatedPost.image ? `Uploaded: ${updatedPost.imageName}` : 'Upload image'}
           </Button>
           <img id='image-preview' className={styles.imagePreview} src='' alt='' />
         </label>

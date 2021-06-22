@@ -32,7 +32,7 @@ const Component = ({ className, posts, userStatus }) => (
         </Button>
       }
     </div>
-
+    {posts.forEach(p => {console.log(p, new Date(p.lastUpdate));})}
     {posts
       .sort((a, b) => (
         new Date(b.lastUpdate) - new Date(a.lastUpdate)

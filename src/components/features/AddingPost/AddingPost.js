@@ -37,7 +37,7 @@ const Component = ({ className, userEmail, addPost }) => {
       };
       setNewPost({
         ...newPost,
-        image: event.target.value,
+        image: image,
         imageName: image.name,
       });
     } else {
@@ -156,11 +156,10 @@ const Component = ({ className, userEmail, addPost }) => {
               id='post-image'
               name='image'
               type='file'
-              value={newPost.image}
               onChange={handleNewPost}
               hidden
             />
-            {newPost.image.length > 0 ? `Uploaded: ${newPost.imageName}` : 'Upload image'}
+            {newPost.image ? `Uploaded: ${newPost.imageName}` : 'Upload image'}
           </Button>
           <img id='image-preview' className={styles.imagePreview} src='' alt='' />
         </label>
