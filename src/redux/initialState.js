@@ -13,6 +13,7 @@ export const initialState = {
         price: 100,
         phone: '+99 123 456 789',
         city: 'Paris',
+        imageName: 'test-image-1.png',
       },
       {
         id: '2',
@@ -26,6 +27,7 @@ export const initialState = {
         price: 3568,
         phone: '+99 333 666 999',
         city: 'London',
+        imageName: 'test-image-2.png',
       },
       {
         id: '3',
@@ -39,6 +41,7 @@ export const initialState = {
         price: '',
         phone: '',
         city: '',
+        imageName: '',
       },
     ],
     loading: {
