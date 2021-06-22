@@ -12,7 +12,7 @@ import styles from './PostSummary.module.scss';
 
 const Component = ({ className, id, title, image, price, lastUpdate }) => {
 
-  if(image) {
+  if(typeof image === 'object') {
     const fr = new FileReader();
     fr.readAsDataURL(image);
     fr.onload = function() {
@@ -27,7 +27,9 @@ const Component = ({ className, id, title, image, price, lastUpdate }) => {
         <div className={styles.postImage}>
           {image === ''
             ? <img src='/images/no-pic.png' alt='no-pic' />
-            : <img id='image-preview' src='' alt='post-pic' />
+            : typeof image === 'object'
+              ? <img id='image-preview' src='' alt='post-pic' />
+              : <img src={image} alt='post-pic' />
           }
         </div>
         <div className={styles.postInfo}>
