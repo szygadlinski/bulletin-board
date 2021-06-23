@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getAll } from '../../../redux/postsRedux';
+import { getAll, fetchPosts } from '../../../redux/postsRedux';
 import { getUserStatus } from '../../../redux/userRedux';
 
 import { Button, Link } from '@material-ui/core';
@@ -55,11 +55,11 @@ const mapStateToProps = state => ({
   userStatus: getUserStatus(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  fetchPosts: () => dispatch(fetchPosts()),
+});
 
-const Container = connect(mapStateToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   // Component as Homepage,
