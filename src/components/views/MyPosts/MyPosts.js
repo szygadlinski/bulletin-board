@@ -39,7 +39,7 @@ const Component = ({className, posts, userStatus, userEmail}) => (
             new Date(b.lastUpdate) - new Date(a.lastUpdate)
           ))
           .map(post => (
-            <PostSummary key={post.id} {...post} />
+            <PostSummary key={post._id} {...post} />
           ))
         }
       </>

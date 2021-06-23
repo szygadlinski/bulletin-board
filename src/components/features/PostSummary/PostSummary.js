@@ -10,7 +10,7 @@ import { Link } from '@material-ui/core';
 
 import styles from './PostSummary.module.scss';
 
-const Component = ({ className, id, title, image, price, lastUpdate }) => {
+const Component = ({ className, _id, title, image, price, lastUpdate }) => {
 
   if(typeof image === 'object') {
     const fr = new FileReader();
@@ -23,7 +23,7 @@ const Component = ({ className, id, title, image, price, lastUpdate }) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <Link className={styles.postLink} href={`/post/${id}`} >
+      <Link className={styles.postLink} href={`/post/${_id}`} >
         <div className={styles.postImage}>
           {image === ''
             ? <img src='/images/no-pic.png' alt='no-pic' />
@@ -43,7 +43,7 @@ const Component = ({ className, id, title, image, price, lastUpdate }) => {
 };
 
 Component.propTypes = {
-  id: PropTypes.string,
+  _id: PropTypes.string,
   className: PropTypes.string,
   title: PropTypes.string,
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

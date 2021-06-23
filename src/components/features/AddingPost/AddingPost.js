@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
-import randomId from '@szygadlinski/id-generator';
+//import randomId from '@szygadlinski/id-generator';
 
 import { connect } from 'react-redux';
 import { addPost } from '../../../redux/postsRedux';
@@ -72,7 +72,7 @@ const Component = ({ className, userEmail, addPost }) => {
     } else {
       addPost({
         ...newPost,
-        id: randomId(10),
+        //id: randomId(10),
         email: userEmail,
         date: currentDate(),
         lastUpdate: currentDate(),

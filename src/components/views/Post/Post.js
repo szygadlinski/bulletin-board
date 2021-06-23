@@ -13,12 +13,12 @@ import styles from './Post.module.scss';
 
 const Component = ({className, posts, ...props}) => {
 
-  const properPost = posts.filter(post => post.id === props.match.params.id);
+  const properPost = posts.filter(post => post._id === props.match.params.id);
 
   return (
     <div className={clsx(className, styles.root)}>
       {properPost.length > 0
-        ? <PostDetails key={properPost[0].id} {...properPost[0]} />
+        ? <PostDetails key={properPost[0]._id} {...properPost[0]} />
         : <NotFound />
       }
     </div>

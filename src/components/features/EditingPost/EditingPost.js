@@ -11,10 +11,10 @@ import { TextField, FormControl, InputLabel, Select, MenuItem, Button, OutlinedI
 
 import styles from './EditingPost.module.scss';
 
-const Component = ({ className, editPost, id, title, content, date, lastUpdate, email, status, image, price, phone, city, imageName }) => {
+const Component = ({ className, editPost, _id, title, content, date, lastUpdate, email, status, image, price, phone, city, imageName }) => {
 
   const [updatedPost, setUpdatedPost] = useState({
-    id: id,
+    _id: _id,
     title: title,
     content: content,
     date: date,
@@ -211,7 +211,7 @@ const Component = ({ className, editPost, id, title, content, date, lastUpdate, 
 Component.propTypes = {
   className: PropTypes.string,
   editPost: PropTypes.func,
-  id: PropTypes.string,
+  _id: PropTypes.string,
   title: PropTypes.string,
   content: PropTypes.string,
   date: PropTypes.string,

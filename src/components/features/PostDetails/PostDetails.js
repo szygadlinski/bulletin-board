@@ -10,7 +10,7 @@ import { Button, Link } from '@material-ui/core';
 
 import styles from './PostDetails.module.scss';
 
-const Component = ({ className, userStatus, userEmail, id, title, content, date, lastUpdate, email, status, image, price, phone, city }) => {
+const Component = ({ className, userStatus, userEmail, _id, title, content, date, lastUpdate, email, status, image, price, phone, city }) => {
 
   if(typeof image === 'object') {
     const fr = new FileReader();
@@ -31,7 +31,7 @@ const Component = ({ className, userStatus, userEmail, id, title, content, date,
           : <Button
             className={styles.button}
             component={Link}
-            href={`/post/${id}/edit`}
+            href={`/post/${_id}/edit`}
             variant="outlined"
             color="inherit"
             size="large"
@@ -80,7 +80,7 @@ Component.propTypes = {
   className: PropTypes.string,
   userStatus: PropTypes.string,
   userEmail: PropTypes.string,
-  id: PropTypes.string,
+  _id: PropTypes.string,
   title: PropTypes.string,
   content: PropTypes.string,
   date: PropTypes.string,
