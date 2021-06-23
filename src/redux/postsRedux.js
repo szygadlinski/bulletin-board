@@ -24,16 +24,19 @@ export const editPost = payload => ({ payload, type: EDIT_POST });
 // thunk creators
 export const fetchPosts = () => {
   return (dispatch, getState) => {
-    dispatch(fetchStarted());
+    if(getState().posts.data.length === 0 && getState().posts.loading.active === false) {
 
-    Axios
-      .get('http://localhost:8000/api/posts')
-      .then(res => {
-        dispatch(fetchSuccess(res.data));
-      })
-      .catch(err => {
-        dispatch(fetchError(err.message || true));
-      });
+      dispatch(fetchStarted());
+
+      Axios
+        .get('http://localhost:8000/api/posts')
+        .then(res => {
+          dispatch(fetchSuccess(res.data));
+        })
+        .catch(err => {
+          dispatch(fetchError(err.message || true));
+        });
+    }
   };
 };
 
