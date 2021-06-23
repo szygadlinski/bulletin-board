@@ -7,7 +7,6 @@ router.get('/posts', async (req, res) => {
   try {
     const result = await Post
       .find({ status: 'published' })
-      .select('image title lastUpdate price')
       .sort({ lastUpdate: -1 });
     if(!result) {
       res.status(404).json({ post: 'Not found...' });
