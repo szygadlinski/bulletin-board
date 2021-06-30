@@ -102,10 +102,11 @@ export const reducer = (statePart = [], action = {}) => {
     case ADD_POST: {
       return {
         ...statePart,
-        data: [
-          ...statePart.data,
-          action.payload,
-        ],
+        data:
+          [
+            ...statePart.data,
+            action.payload,
+          ],
       };
     }
     case EDIT_POST: {
