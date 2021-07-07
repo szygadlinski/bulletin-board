@@ -9,6 +9,8 @@ import { editPost } from '../../../redux/postsRedux';
 
 import { TextField, FormControl, InputLabel, Select, MenuItem, Button, OutlinedInput, InputAdornment } from '@material-ui/core';
 
+import { currentDate } from '../../../utils/CurrentDate';
+
 import styles from './EditingPost.module.scss';
 
 const Component = ({ className, editPost, _id, title, content, date, lastUpdate, email, status, image, price, phone, city, imageName }) => {
@@ -48,16 +50,6 @@ const Component = ({ className, editPost, _id, title, content, date, lastUpdate,
         [event.target.name]: event.target.value,
       });
     }
-  };
-
-  const currentDate = () => {
-    const date = new Date(Date.now());
-    const month = String(date.getMonth() + 1).padStart(2, 0);
-    const day = String(date.getDate()).padStart(2, 0);
-    const year = date.getFullYear();
-    const hour = String(date.getHours()).padStart(2, 0);
-    const minute = String(date.getMinutes()).padStart(2, 0);
-    return `${month}.${day}.${year} ${hour}:${minute}`;
   };
 
   const history = useHistory();
