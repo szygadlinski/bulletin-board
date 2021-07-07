@@ -50,7 +50,7 @@ router.post('/posts', async (req, res) => {
       imageName: imageName,
     });
     await newPost.save();
-    res.json({ message: 'OK', addedPost: newPost });
+    res.json(newPost);
   }
   catch(err) {
     res.status(500).json(err);

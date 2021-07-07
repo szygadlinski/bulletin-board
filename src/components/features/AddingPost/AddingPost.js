@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { addPost } from '../../../redux/postsRedux';
+import { addNewPost } from '../../../redux/postsRedux';
 import { getUserEmail } from '../../../redux/userRedux';
 
 import { TextField, FormControl, InputLabel, Select, MenuItem, Button, OutlinedInput, InputAdornment } from '@material-ui/core';
@@ -221,7 +221,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addPost: newPost => dispatch(addPost(newPost)),
+  addPost: newPost => dispatch(addNewPost(newPost)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
