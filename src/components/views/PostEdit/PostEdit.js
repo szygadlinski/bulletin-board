@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/postsRedux';
-import { getUserStatus, getUserEmail/*, reduxActionCreator */} from '../../../redux/userRedux';
+import { getUserStatus, getUserEmail } from '../../../redux/userRedux';
 
 import { EditingPost } from '../../features/EditingPost/EditingPost';
 import { NotFound } from '../NotFound/NotFound';
@@ -42,14 +42,9 @@ const mapStateToProps = state => ({
   userEmail: getUserEmail(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-const Container = connect(mapStateToProps/*, mapDispatchToProps*/)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as PostEdit,
   Container as PostEdit,
   Component as PostEditComponent,
 };

@@ -88,7 +88,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as Header,
   Container as Header,
   Component as HeaderComponent,
 };

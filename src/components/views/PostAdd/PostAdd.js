@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getUserStatus/*, reduxActionCreator */} from '../../../redux/userRedux';
+import { getUserStatus} from '../../../redux/userRedux';
 
 import { AddingPost } from '../../features/AddingPost/AddingPost';
 import { NotFound } from '../NotFound/NotFound';
@@ -29,14 +29,9 @@ const mapStateToProps = state => ({
   userStatus: getUserStatus(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-const Container = connect(mapStateToProps/*, mapDispatchToProps*/)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as PostAdd,
   Container as PostAdd,
   Component as PostAddComponent,
 };

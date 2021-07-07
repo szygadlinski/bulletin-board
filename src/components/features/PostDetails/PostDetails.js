@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getUserStatus, getUserEmail/*, reduxActionCreator */} from '../../../redux/userRedux';
+import { getUserStatus, getUserEmail } from '../../../redux/userRedux';
 
 import { Button, Link } from '@material-ui/core';
 
@@ -98,14 +98,9 @@ const mapStateToProps = state => ({
   userEmail: getUserEmail(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-const Container = connect(mapStateToProps/*, mapDispatchToProps*/)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as PostDetails,
   Container as PostDetails,
   Component as PostDetailsComponent,
 };

@@ -224,7 +224,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(null, mapDispatchToProps)(Component);
 
 export {
-  // Component as EditingPost,
   Container as EditingPost,
   Component as EditingPostComponent,
 };
