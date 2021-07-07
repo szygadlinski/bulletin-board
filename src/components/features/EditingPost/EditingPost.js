@@ -64,9 +64,10 @@ const Component = ({ className, editPost, _id, title, content, date, lastUpdate,
     } else if(updatedPost.content.length < 20) {
       alert('Your description is too short!');
     } else {
+      const date = new Date(Date.now());
       editPost({
         ...updatedPost,
-        lastUpdate: currentDate(),
+        lastUpdate: currentDate(date),
       });
       alert('Post successfully updated!');
       history.push('/');
